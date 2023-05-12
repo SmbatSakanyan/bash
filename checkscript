@@ -1,0 +1,35 @@
+func(){
+
+[ -s "$1" ] || echo "process list is empty"
+
+[ -s "$1" ] || return
+
+while IFS= read -r line;
+do
+
+pid="${line% *}"
+maxruntime="${line#* }"
+runtime=`ps -o etime= -p "${pid}"`
+
+echo "$pid   $runtime     $maxruntime"
+
+if [ -z $runtime ]; then
+
+sed -i "/${line}/d" testfile
+
+elif [[ $runtime > $maxruntime ]]; then
+
+kill -9 "$pid" 
+sed -i "/${line}/d" testfile
+
+fi
+
+done<$1
+
+echo "   "
+
+[ -v $2 ] || sleep $2
+
+func $1 $2
+}
+func $1 $2 
