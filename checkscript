@@ -1,3 +1,31 @@
+
+
+if [ -z $1 ] || [ "$1" == "--help" ]; then
+
+echo "---------------------------------------------------------"
+echo ""
+echo ""
+
+echo "This script require input file in first argument and time to sleep beforenext run"
+echo ""
+
+echo "Time argument can be in second, minute or hour format like \` 5 5m 5h"
+echo "To generate testfile you can use "preptestfile" script in same directory" 
+
+echo ""
+echo "You can run script like this \.\/checkscript testfile 5"
+echo ""
+echo ""
+echo "---------------------------------------------------------"
+
+exit 0
+fi
+
+
+
+
+
+
 func(){
 
 [ -s "$1" ] || echo "process list is empty"
@@ -32,4 +60,4 @@ echo "   "
 
 func $1 $2
 }
-func $1 $2 
+func $1 $2
