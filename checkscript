@@ -32,7 +32,7 @@ func(){
 
 [ -s "$1" ] || return
 
-while IFS= read -r line;
+while read line;
 do
 
 pid="${line% *}"
